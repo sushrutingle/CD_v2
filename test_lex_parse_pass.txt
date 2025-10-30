@@ -1,0 +1,72 @@
+# URL-Based Specification Language Example - Valid Syntax
+
+# Define variables
+website_name = "AnotherWebsite"
+website_url = "https://www.anotherwebsite.com"
+company_slogan = "Innovating the future"
+
+# Homepage
+homepage {
+    url = "/"
+    title = "Welcome to $website_name"
+    description = "This is the homepage of $website_name - $company_slogan"
+    template = "homepage_template.html"
+    access = "public"
+    seo {
+        meta_tags {
+            description = "Welcome to $website_name - The best place for all your needs!"
+            keywords = "website, AnotherWebsite, homepage, welcome, innovation"
+        }
+    }
+}
+
+# Services page
+services {
+    url = "/services"
+    title = "Our Services - $website_name"
+    description = "Explore our services at $website_name"
+    template = "services_template.html"
+    access = "public"
+    seo {
+        meta_tags {
+            description = "Services - Discover what $website_name offers to help your business grow"
+            keywords = "services, solutions, consulting, $website_name"
+        }
+    }
+}
+
+# Blog page with dynamic content
+blog {
+    url = "/blog/{post_id}"
+    access = "public"
+    template = "blog_post_template.html"
+    generate_content {
+        post_id = "$1"
+        post = get_post_details(post_id)
+        if post:
+            title = "Blog: {post.title}"
+            description = "{post.summary}"
+            seo {
+                meta_tags {
+                    description = "{post.meta_description}"
+                    keywords = "{post.tags}, blog, article"
+                }
+            }
+        else:
+            redirect = "/blog"
+    }
+}
+
+# Define navigation
+navigation {
+    links {
+        home = "/"
+        services = "/services"
+        blog = "/blog"
+    }
+}
+
+# Define footer
+footer {
+    text = "© $website_name. $company_slogan. All rights reserved."
+}

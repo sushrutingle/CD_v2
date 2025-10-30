@@ -1,0 +1,26 @@
+# URL-Based Specification Language Example
+
+# Define variables
+website_name = "MyWebsite"
+website_url = "https://www.mywebsite.com"
+
+# Homepage with syntax error - missing closing brace
+homepage {
+    url = "/"
+    title = "Welcome to $website_name"
+    description = "This is the homepage of $website_name"
+    template = "homepage_template.html"
+    access = "public"
+    seo {
+        meta_tags {
+            description = "Welcome to $website_name - The best place for all your needs!"
+            keywords = "website, MyWebsite, homepage, welcome"
+        }
+    }
+    # Missing closing brace for homepage
+
+# About page (this should not be parsed due to previous error)
+about {
+    url = "/about"
+    title = "About Us - $website_name"
+}

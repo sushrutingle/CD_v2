@@ -1,0 +1,104 @@
+# URL-Based Specification Language Example
+
+# Define variables
+website_name = "MyWebsite"
+website_url = "https://www.mywebsite.com"
+
+# Define page structure
+
+# Homepage
+homepage {
+    url = "/"
+    title = "Welcome to $website_name"
+    description = "This is the homepage of $website_name"
+    template = "homepage_template.html"
+    access = "public"
+    seo {
+        meta_tags {
+            description = "Welcome to $website_name - The best place for all your needs!"
+            keywords = "website, MyWebsite, homepage, welcome"
+        }
+    }
+}
+
+# About page
+about {
+    url = "/about"
+    title = "About Us - $website_name"
+    description = "Learn more about $website_name"
+    template = "about_template.html"
+    access = "public"
+    seo {
+        meta_tags {
+            description = "About Us - Learn more about $website_name and our mission."
+            keywords = "about, $website_name, mission, history"
+        }
+    }
+}
+
+# Products page
+products {
+    url = "/products"
+    title = "Products - $website_name"
+    description = "Browse our products at $website_name"
+    template = "products_template.html"
+    access = "public"
+    seo {
+        meta_tags {
+            description = "Products - Browse our wide range of products at $website_name"
+            keywords = "products, shop, buy, $website_name"
+        }
+    }
+}
+
+# Product detail page
+product_detail {
+    url = "/products/{product_id}"
+    access = "public"
+    template = "product_detail_template.html"
+    generate_content {
+        product_id = "$1"
+        product = get_product_details(product_id)
+        if product:
+            title = "Product: {product.name}"
+            description = "Details of {product.name} - {product.description}"
+            seo {
+                meta_tags {
+                    description = "Product details - {product.name} - {product.description}"
+                    keywords = "product, {product.name}, {product.category}, details"
+                }
+            }
+        else:
+            redirect = "/products"
+    }
+}
+
+# Contact page
+contact {
+    url = "/contact"
+    title = "Contact Us - $website_name"
+    description = "Get in touch with $website_name"
+    template = "contact_template.html"
+    access = "public"
+    seo {
+        meta_tags {
+            description = "Contact Us - Get in touch with $website_name for any inquiries"
+            keywords = "contact, us, $website_name, inquiries"
+        }
+    }
+}
+
+# Define navigation
+navigation {
+    links {
+        home = "/"
+        about = "/about"
+        products = "/products"
+        contact = "/contact"
+    }
+}
+
+# Define footer
+footer {
+    text = "© $website_name. All rights reserved."
+}

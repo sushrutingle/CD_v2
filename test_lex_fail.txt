@@ -1,0 +1,27 @@
+# URL-Based Specification Language Example with lexical errors
+
+# Define variables with invalid syntax (missing equals sign)
+website_name "MyWebsite"
+website_url = "https://www.mywebsite.com"
+
+# Homepage with invalid characters in property name
+homepage {
+    url/path = "/"  # Invalid: using / in property name
+    title = "Welcome to $website_name"
+    description = "This is the homepage of $website_name"
+    template = "homepage_template.html"
+    access = "public"
+}
+
+# About page with invalid string delimiter
+about {
+    url = "/about"
+    title = 'About Us - $website_name'  # Invalid: using single quotes instead of double quotes
+    description = "Learn more about $website_name"
+}
+
+# Products page with invalid special character
+products § {  # Invalid: using § symbol in block name
+    url = "/products"
+    title = "Products - $website_name"
+}

@@ -1,0 +1,100 @@
+================================================================================
+  USL PARSER - QUICK BUILD REFERENCE
+================================================================================
+
+PREREQUISITES:
+- WinFlexBison (win_bison, win_flex)
+- MinGW GCC/G++ compiler
+- WinBGIm library (for graphical visualization)
+
+================================================================================
+STANDARD BUILD (TEXT OUTPUT ONLY)
+================================================================================
+
+1. Generate Parser:
+   win_bison -d usl.y -o usl.tab.c
+
+2. Generate Lexer:
+   win_flex -o usl.lex.c usl.l
+
+3. Compile:
+   gcc -o usl_parser.exe -DSTANDALONE_PARSER usl.tab.c usl.lex.c ast.c symbol_table.c semantic_analysis.c -lm
+
+4. Run:
+   .\usl_parser.exe input.txt
+
+================================================================================
+BUILD WITH GRAPHICAL VISUALIZATION
+================================================================================
+
+1. Generate Parser:
+   win_bison -d usl.y -o usl.tab.c
+
+2. Generate Lexer:
+   win_flex -o usl.lex.c usl.l
+
+3. Compile with Graphics:
+   g++ -o usl_visual.exe -DSTANDALONE_PARSER usl.tab.c usl.lex.c ast.c symbol_table.c semantic_analysis.c graphics_ast.cpp -lbgi -lgdi32 -lcomdlg32 -luuid -loleaut32 -lole32
+
+4. Run:
+   .\usl_visual.exe input.txt
+
+================================================================================
+ONE-LINER BUILD COMMANDS
+================================================================================
+
+# Full build (text only)
+win_bison -d usl.y -o usl.tab.c && win_flex -o usl.lex.c usl.l && gcc -o usl_parser.exe -DSTANDALONE_PARSER usl.tab.c usl.lex.c ast.c symbol_table.c semantic_analysis.c -lm
+
+# Full build (with graphics)
+win_bison -d usl.y -o usl.tab.c && win_flex -o usl.lex.c usl.l && g++ -o usl_visual.exe -DSTANDALONE_PARSER usl.tab.c usl.lex.c ast.c symbol_table.c semantic_analysis.c graphics_ast.cpp -lbgi -lgdi32 -lcomdlg32 -luuid -loleaut32 -lole32
+
+================================================================================
+FILE OVERVIEW
+================================================================================
+
+Core Files:
+- usl.l              : Lexical analyzer specification
+- usl.y              : Parser specification
+- ast.h / ast.c      : AST implementation
+- symbol_table.h / symbol_table.c : Symbol table
+- semantic_analysis.c : Semantic checker
+
+Graphics Extension:
+- graphics_ast.h     : Graphics module header
+- graphics_ast.cpp   : Graphics implementation (WinBGIm)
+
+Generated Files:
+- usl.tab.c / usl.tab.h : Generated parser
+- usl.lex.c          : Generated lexer
+
+Output Executables:
+- usl_parser.exe     : Text-only version (includes token table)
+- usl_visual.exe     : With graphical visualization (includes token table)
+
+================================================================================
+TESTING
+================================================================================
+
+Test with sample files:
+.\usl_visual.exe test_clean.usl
+.\usl_visual.exe test_errors.usl
+.\usl_visual.exe input.txt
+
+================================================================================
+LIBRARY DEPENDENCIES
+================================================================================
+
+Text-only build requires:
+- Standard C library
+- Math library (-lm)
+
+Graphics build requires:
+- BGI graphics library (-lbgi)
+- Windows GDI library (-lgdi32)
+- COM dialog library (-lcomdlg32)
+- UUID library (-luuid)
+- OLE automation library (-loleaut32)
+- OLE library (-lole32)
+
+================================================================================
