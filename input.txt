@@ -4,21 +4,10 @@
 website_name = "MyWebsite"
 website_url = "https://www.mywebsite.com"
 
-# Define page structure
-
-# Homepage
 homepage {
     url = "/"
-    title = "Welcome to $website_name"
-    description = "This is the homepage of $website_name"
-    template = "homepage_template.html"
-    access = "public"
-    seo {
-        meta_tags {
-            description = "Welcome to $website_name - The best place for all your needs!"
-            keywords = "website, MyWebsite, homepage, welcome"
-        }
-    }
+    title = "Home Page"
+    description = "Welcome to our website"
 }
 
 # About page

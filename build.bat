@@ -4,19 +4,26 @@ if exist output rmdir /s /q output
 mkdir output 2>nul
 REM generate lexer/parser if present
 if exist usl.l (
-    flex usl.l
+    win_flex usl.l
 ) else (
     echo "usl.l not found"
 )
 if exist usl.y (
-    bison -d usl.y
+    win_bison -d usl.y
 ) else (
     echo "usl.y not found"
 )
-REM compile all .c files in the project folder
-gcc -o usl_compiler *.c lex.yy.c usl.tab.c -lfl -ly -static
+REM compile standalone parser
+gcc -o usl_parser.exe -DSTANDALONE_PARSER usl.tab.c usl.lex.c ast.c symbol_table.c semantic_analysis.c -lm
 if errorlevel 1 (
-    echo Build failed
+    echo Standalone parser build failed
 ) else (
-    echo Build succeeded. Run: usl_compiler input\sample_input1.usl
+    echo Standalone parser build succeeded.
+)
+REM compile main compiler with all components
+gcc -o usl_compiler.exe main.c usl.tab.c usl.lex.c ast.c symbol_table.c semantic_analysis.c tac_generator.c basic_blocks.c optimizer.c -lm
+if errorlevel 1 (
+    echo Main compiler build failed
+) else (
+    echo Main compiler build succeeded. Run: usl_compiler.exe input.txt
 )

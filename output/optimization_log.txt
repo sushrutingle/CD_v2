@@ -1,0 +1,4 @@
+Optimization Report
+Constant folding applied: 0
+Strength reductions applied: 0
+Dead code eliminations: 9

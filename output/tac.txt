@@ -1,0 +1,31 @@
+#   OP                      ARG1                             ARG2                             RES
+-------------------------------------------------------------------------------------------------------------
+ 1  =                      MyWebsite                                                         website_name        
+ 2  =                      https://www.mywebsite.com                                         website_url         
+ 3  =                      /                                                                 url_t0              
+ 4  =                      Home Page                                                         title_t1            
+ 5  =                      Welcome to our website                                            description_t2      
+ 6  =                      /about                                                            url_t3              
+ 7  =                      About Us - $website_name                                          title_t4            
+ 8  =                      Learn more about $website_name                                    description_t5      
+ 9  =                      about_template.html                                               template_t6         
+10  =                      public                                                            access_t7           
+11  =                      /products                                                         url_t8              
+12  =                      Products - $website_name                                          title_t9            
+13  =                      Browse our products at $website_name                                  description_t10     
+14  =                      products_template.html                                            template_t11        
+15  =                      public                                                            access_t12          
+16  =                      public                                                            url_t13             
+17  =                      public                                                            access_t14          
+18  =                      product_detail_template.html                                      template_t15        
+19  =                      $1                                                                product_id          
+20  CALL                   get_product_details                                               t16                 
+21  PARAM                  \MÔþÿÿÿløf                                                                           
+22  =                      t16                                                               product             
+23  =                      Product: {product.name}                                           title_t17           
+24  =                      Details of {product.name} - {product.description}                                  description_t18     
+25  =                      /contact                                                          url_t19             
+26  =                      Contact Us - $website_name                                        title_t20           
+27  =                      Get in touch with $website_name                                   description_t21     
+28  =                      contact_template.html                                             template_t22        
+29  =                      public                                                            access_t23          
