@@ -14,7 +14,7 @@
 12  =                      public                                                            access_t14          
 13  =                      $1                                                                product_id          
 14  CALL                   get_product_details                                               t16                 
-15  PARAM                  \MÔþÿÿÿløf                                                                           
+15  PARAM                  $1                                                                                    
 16  =                      t16                                                               product             
 17  =                      Details of {product.name} - {product.description}                                  description_t18     
 18  =                      /contact                                                          url_t19             

@@ -20,7 +20,7 @@ Block B1:
   = product_detail_template.html - -> template_t15
   = $1 - -> product_id
   CALL get_product_details - -> t16
-  PARAM \MÔþÿÿÿløf - -> -
+  PARAM product_id - -> -
   = t16 - -> product
   = Product: {product.name} - -> title_t17
   = Details of {product.name} - {product.description} - -> description_t18

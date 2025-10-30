@@ -85,6 +85,12 @@ void ast_to_tac(ASTNode* node, QuadList* out, char* result_temp) {
             }
             break;
             
+        case AST_NUMBER:
+            if (result_temp && node->value) {
+                strcpy(result_temp, node->value);
+            }
+            break;
+            
         case AST_PAGE_DEF:
             // Process page properties
             for (ASTNode* child = node->child; child; child = child->sibling) {
@@ -124,6 +130,12 @@ void ast_to_tac(ASTNode* node, QuadList* out, char* result_temp) {
             }
             break;
             
+        case AST_IDENTIFIER:
+            if (result_temp && node->value) {
+                strcpy(result_temp, node->value);
+            }
+            break;
+            
         default:
             // Process children for other node types
             for (ASTNode* child = node->child; child; child = child->sibling) {
@@ -138,10 +150,14 @@ void generate_tac(void* ast_root, QuadList* out){
     if (!out) return;
     
     if (!ast_root) {
-        // Demo TAC if no AST
-        tac_append(out, "=", "/home", "", "url");
-        tac_append(out, "=", "Welcome to MySite", "", "title");
-        tac_append(out, "CALL", "generate_content", "", "tmp1");
+        // Demo TAC for testing copy propagation
+        tac_append(out, "=", "10", "", "x");
+        tac_append(out, "=", "x", "", "y");
+        tac_append(out, "+", "y", "5", "t0");
+        tac_append(out, "=", "t0", "", "z");
+        tac_append(out, "=", "z", "", "w");
+        tac_append(out, "*", "w", "2", "t1");
+        tac_append(out, "=", "t1", "", "result");
         return;
     }
     

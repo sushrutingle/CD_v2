@@ -1,0 +1,10 @@
+# Test case for copy propagation
+x = "value1"
+y = x
+z = "value3"
+
+test_page {
+    url = "/test"
+    title = y
+    description = "This is a test page for copy propagation"
+}
