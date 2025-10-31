@@ -1,0 +1,3 @@
+Dead Code Elimination Results
+=============================
+See optimization_log.txt for details

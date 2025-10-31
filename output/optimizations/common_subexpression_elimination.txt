@@ -1,0 +1,3 @@
+Common Sub-Expression Elimination Results
+==========================================
+Number of eliminations: see optimization_log.txt

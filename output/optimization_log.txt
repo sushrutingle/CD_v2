@@ -2,4 +2,5 @@ Optimization Report
 Constant folding applied: 0
 Strength reductions applied: 0
 Copy propagations applied: 2
-Dead code eliminations: 6
+Dead code eliminations: 9
+Common sub-expression eliminations: 0

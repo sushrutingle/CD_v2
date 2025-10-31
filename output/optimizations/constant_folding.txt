@@ -1,0 +1,3 @@
+Constant Folding Results
+========================
+See optimization_log.txt for details

@@ -1,22 +1,26 @@
 #   OP                      ARG1                             ARG2                             RES
 -------------------------------------------------------------------------------------------------------------
- 1  =                      AnotherWebsite                                                    website_name        
- 2  =                      https://www.anotherwebsite.com                                    website_url         
- 3  =                      Innovating the future                                             company_slogan      
- 4  =                      /                                                                 url_t0              
- 5  =                      This is the homepage of $website_name - $company_slogan                                  description_t2      
- 6  =                      public                                                            access_t4           
- 7  =                      /services                                                         url_t5              
- 8  =                      Explore our services at $website_name                                  description_t7      
- 9  =                      public                                                            access_t9           
-10  =                      public                                                            url_t10             
-11  =                      public                                                            access_t11          
-12  =                      $1                                                                post_id             
-13  CALL                   get_post_details                                                  t13                 
-14  PARAM                  $1                                                                                    
-15  =                      t13                                                               post                
-16  IF_FALSE               t13                                                               L14                 
-17  =                      {post.summary}                                                    description_t16     
-18  GOTO                                                                                     L17                 
-19  LABEL                  L17                                                                                   
-20  LABEL                  L17                                                                                   
+ 1  =                      MyWebsite                                                         website_name        
+ 2  =                      https://www.mywebsite.com                                         website_url         
+ 3  =                      /                                                                 url_t0              
+ 4  =                      Welcome to our website                                            description_t2      
+ 5  =                      /about                                                            url_t3              
+ 6  =                      Learn more about $website_name                                    description_t5      
+ 7  =                      public                                                            access_t7           
+ 8  =                      /products                                                         url_t8              
+ 9  =                      Browse our products at $website_name                                  description_t10     
+10  =                      public                                                            access_t12          
+11  =                      public                                                            url_t13             
+12  =                      public                                                            access_t14          
+13  =                      $1                                                                product_id          
+14  CALL                   get_product_details                                               t16                 
+15  PARAM                  $1                                                                                    
+16  =                      t16                                                               product             
+17  IF_FALSE               t16                                                               L17                 
+18  =                      Details of {product.name} - {product.description}                                  description_t19     
+19  GOTO                                                                                     L20                 
+20  LABEL                  L20                                                                                   
+21  LABEL                  L20                                                                                   
+22  =                      /contact                                                          url_t21             
+23  =                      Get in touch with $website_name                                   description_t23     
+24  =                      public                                                            access_t25          

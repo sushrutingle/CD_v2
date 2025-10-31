@@ -1,0 +1,27 @@
+# Test file for Common Sub-Expression Elimination
+website_name = "TestWebsite"
+website_url = "https://www.testwebsite.com"
+
+# Homepage with variable declarations
+homepage {
+    url = "/"
+    title = "Welcome to $website_name"
+    description = "Welcome to $website_name - The best website"
+    template = "home_template.html"
+    access = "public"
+    
+    # Variable declarations that should create common sub-expressions
+    var1 = 10 + 5
+    var2 = 10 + 5  # Same expression as var1
+    var3 = 20 * 2
+    var4 = 20 * 2  # Same expression as var3
+}
+
+# About page
+about {
+    url = "/about"
+    title = "About $website_name"
+    description = "Learn more about $website_name"
+    template = "about_template.html"
+    access = "public"
+}
