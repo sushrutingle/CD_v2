@@ -1,31 +1,31 @@
-=== Basic Blocks (1) ===
+=== Basic Blocks (4) ===
 Block B1:
-  = MyWebsite - -> website_name
-  = https://www.mywebsite.com - -> website_url
+  = AnotherWebsite - -> website_name
+  = https://www.anotherwebsite.com - -> website_url
+  = Innovating the future - -> company_slogan
   = / - -> url_t0
-  = Home Page - -> title_t1
-  = Welcome to our website - -> description_t2
-  = /about - -> url_t3
-  = About Us - $website_name - -> title_t4
-  = Learn more about $website_name - -> description_t5
-  = about_template.html - -> template_t6
-  = public - -> access_t7
-  = /products - -> url_t8
-  = Products - $website_name - -> title_t9
-  = Browse our products at $website_name - -> description_t10
-  = products_template.html - -> template_t11
-  = public - -> access_t12
-  = public - -> url_t13
-  = public - -> access_t14
-  = product_detail_template.html - -> template_t15
-  = $1 - -> product_id
-  CALL get_product_details - -> t16
-  PARAM product_id - -> -
-  = t16 - -> product
-  = Product: {product.name} - -> title_t17
-  = Details of {product.name} - {product.description} - -> description_t18
-  = /contact - -> url_t19
-  = Contact Us - $website_name - -> title_t20
-  = Get in touch with $website_name - -> description_t21
-  = contact_template.html - -> template_t22
-  = public - -> access_t23
+  = Welcome to $website_name - -> title_t1
+  = This is the homepage of $website_name - $company_slogan - -> description_t2
+  = homepage_template.html - -> template_t3
+  = public - -> access_t4
+  = /services - -> url_t5
+  = Our Services - $website_name - -> title_t6
+  = Explore our services at $website_name - -> description_t7
+  = services_template.html - -> template_t8
+  = public - -> access_t9
+  = public - -> url_t10
+  = public - -> access_t11
+  = blog_post_template.html - -> template_t12
+  = $1 - -> post_id
+  CALL get_post_details - -> t13
+  PARAM post_id - -> -
+  = t13 - -> post
+  IF_FALSE post - -> L14
+Block B2:
+  = Blog: {post.title} - -> title_t15
+  = {post.summary} - -> description_t16
+  GOTO - - -> L17
+Block B3:
+  LABEL L17 - -> -
+Block B4:
+  LABEL L17 - -> -

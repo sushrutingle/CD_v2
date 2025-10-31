@@ -59,6 +59,13 @@ char* new_temp() {
     return temp_name;
 }
 
+/* Helper function to generate a new label name */
+char* new_label() {
+    static char label_name[32];
+    sprintf(label_name, "L%d", temp_counter++);
+    return label_name;
+}
+
 /* Helper function to process AST nodes recursively */
 void ast_to_tac(ASTNode* node, QuadList* out, char* result_temp) {
     if (!node) return;
@@ -133,6 +140,60 @@ void ast_to_tac(ASTNode* node, QuadList* out, char* result_temp) {
         case AST_IDENTIFIER:
             if (result_temp && node->value) {
                 strcpy(result_temp, node->value);
+            }
+            break;
+            
+        case AST_IF_STMT:
+            // Handle if statement
+            if (node->child) {
+                // Generate condition evaluation
+                char cond_temp[128];
+                ast_to_tac(node->child, out, cond_temp);
+                
+                // Generate conditional jump
+                char* false_label = new_label();
+                tac_append(out, "IF_FALSE", cond_temp, "", false_label);
+                
+                // Generate then block
+                if (node->child->sibling) {
+                    ast_to_tac(node->child->sibling, out, NULL);
+                }
+                
+                // Add label for after the if statement
+                tac_append(out, "LABEL", false_label, "", "");
+            }
+            break;
+            
+        case AST_IF_ELSE_STMT:
+            // Handle if-else statement
+            if (node->child) {
+                // Generate condition evaluation
+                char cond_temp[128];
+                ast_to_tac(node->child, out, cond_temp);
+                
+                // Generate conditional jump to else block
+                char* else_label = new_label();
+                tac_append(out, "IF_FALSE", cond_temp, "", else_label);
+                
+                // Generate then block
+                if (node->child->sibling) {
+                    ast_to_tac(node->child->sibling, out, NULL);
+                }
+                
+                // Generate jump to end after then block
+                char* end_label = new_label();
+                tac_append(out, "GOTO", "", "", end_label);
+                
+                // Add label for else block
+                tac_append(out, "LABEL", else_label, "", "");
+                
+                // Generate else block
+                if (node->child->sibling && node->child->sibling->sibling) {
+                    ast_to_tac(node->child->sibling->sibling, out, NULL);
+                }
+                
+                // Add label for end
+                tac_append(out, "LABEL", end_label, "", "");
             }
             break;
             
